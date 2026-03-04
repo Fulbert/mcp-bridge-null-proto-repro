@@ -34,18 +34,16 @@ function triggerNullProtoConsoleLog() {
     <div style="margin-top: 2em; text-align: left; max-width: 600px; margin-inline: auto;">
       <h3>How to reproduce:</h3>
       <ol>
+        <li>Run <code>pnpm tauri dev</code> — devtools open automatically</li>
+        <li>Click the button above and check the Console tab</li>
         <li>
-          Enable the MCP bridge in <code>src-tauri/src/lib.rs</code> (uncomment line 11),
-          then connect via <code>driver_session</code>
-        </li>
-        <li>Click the button above</li>
-        <li>
-          Read console logs — instead of the log, you get:<br>
-          <code>[MCP][BRIDGE][UNHANDLED_ERROR] Uncaught TypeError: Cannot convert object to primitive value</code>
+          With the bridge enabled (line 11 in <code>src-tauri/src/lib.rs</code> uncommented),
+          you get an error instead of the log:<br>
+          <code>Uncaught TypeError: Cannot convert object to primitive value</code>
         </li>
         <li>
-          Now disable the bridge (comment line 11 back out) and repeat —
-          the <code>console.log</code> works normally with no crash
+          Comment out line 11 and save — Tauri restarts automatically.
+          Click again and the <code>console.log</code> works normally with no crash.
         </li>
       </ol>
     </div>
